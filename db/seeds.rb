@@ -1,7 +1,24 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+nodetype_atm = NodeType.create(:name => "ATM")
+
+Node.create(
+  :name => "Banco Continental",
+  :address => "Bla bla bla",
+  :latitude => "-25.287738",
+  :longitude => "-57.627816",
+  :node_type_id => nodetype_atm)
+
+Node.create(
+  :name => "Banco Itau",
+  :address => "Bla bla bla",
+  :latitude => "-25.287738",
+  :longitude => "-57.127816",
+  :node_type_id => nodetype_atm)
+
+
+Node.create(
+  :name => "HSBC",
+  :address => "Bla bla bla",
+  :latitude => "-25.287738",
+  :longitude => "-57.127816",
+  :node_type_id => nodetype_atm)

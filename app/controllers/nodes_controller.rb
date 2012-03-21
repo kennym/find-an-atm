@@ -3,6 +3,6 @@ class NodesController < ApplicationController
 
   def index
     @nodes = Node.all
-    render :json => @nodes
+    render :json => @nodes.to_json
   end
 end

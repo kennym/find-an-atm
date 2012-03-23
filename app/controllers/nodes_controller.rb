@@ -3,6 +3,6 @@ class NodesController < ApplicationController
 
   def index
     @nodes = Node.all
-    render :json => @nodes.to_json
+    render :text => "Ext.data.JsonP.callback1(" + @nodes.to_json + ")", :content_type => 'text/javascript'
   end
 end

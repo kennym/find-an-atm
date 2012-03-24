@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320000200) do
+ActiveRecord::Schema.define(:version => 20120324221354) do
 
   create_table "node_types", :force => true do |t|
     t.string   "name"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20120320000200) do
   create_table "nodes", :force => true do |t|
     t.string   "name"
     t.string   "address"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.float    "latitude",     :limit => 255
+    t.float    "longitude",    :limit => 255
     t.integer  "node_type_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
 end

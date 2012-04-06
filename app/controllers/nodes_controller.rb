@@ -3,8 +3,8 @@ class NodesController < ApplicationController
 
   def index
     # Debugging only
-    if !params[:latitude].nil? and
-       !params[:longitude].nil?
+    if params[:latitude].nil? and
+       params[:longitude].nil?
       if params[:latitude].empty? or params[:longitude].empty?
         params[:latitude] = "-25.300494"
         params[:longitude] = "-57.636231"
@@ -21,6 +21,9 @@ class NodesController < ApplicationController
     user_node.delete()
 
     render :text => "#{params[:callback]}(" + @nodes.to_json + ")", :content_type => 'text/javascript'
+  end
+
+  def add
   end
 end
 

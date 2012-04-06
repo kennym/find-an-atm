@@ -3,7 +3,9 @@ class NodesController < ApplicationController
 
   def index
     # Debugging only
-    if params[:latitude].empty? or params[:longitude].empty?
+    if !params[:latitude].nil? and
+       !params[:longitude].nil? and
+       params[:latitude].empty? or params[:longitude].empty?
       params[:latitude] = "-25.300494"
       params[:longitude] = "-57.636231"
     end

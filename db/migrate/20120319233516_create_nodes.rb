@@ -3,8 +3,8 @@ class CreateNodes < ActiveRecord::Migration
     create_table :nodes do |t|
       t.string "name"
       t.string "address"
-      t.string "latitude"
-      t.string "longitude"
+      t.float "latitude"
+      t.float "longitude"
       t.integer "node_type_id"
 
       t.timestamps

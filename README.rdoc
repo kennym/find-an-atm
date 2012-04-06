@@ -1,3 +1,3 @@
-=== FIND-AN-ATM BACKEND ===
+=== FIND-AN-ATM application server ===
 
-The backend Find-An-ATM.
+Stores/serves via a JSON REST API node information.

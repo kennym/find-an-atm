@@ -1,5 +1,3 @@
-nodetype_atm = NodeType.create(:name => "ATM")
-
 Node.create(
   :name => "Test ATM",
   :address => "Pacheco c/ Legion Civil Extranjera",

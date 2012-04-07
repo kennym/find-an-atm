@@ -24,7 +24,8 @@ class NodesController < ApplicationController
     render :text => "#{params[:callback]}(" + @nodes.to_json + ")", :content_type => 'text/javascript'
   end
 
-  def add
+  def create
+    render :text => params.to_yaml
   end
 end
 

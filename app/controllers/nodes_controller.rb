@@ -25,7 +25,17 @@ class NodesController < ApplicationController
   end
 
   def create
-    render :text => params.to_yaml
+    user_node = Node.new(
+      :name => params[:name],
+      :latitude => params[:latitude],
+      :longitude => params[:longitude]
+    )
+
+    if user_node.save
+      render :json => {"ok" => true}
+    else
+      render :json => {"ok" => false, "error" => user_node.errors}
+    end
   end
 end
 

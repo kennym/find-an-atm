@@ -6,6 +6,7 @@ class NodesController < ApplicationController
       render :json => {"success" => false, "message" => "Invalid location"} and return
     end
 
+    # TODO: Avoid the database access
     user_node = Node.new(
       :latitude => params[:latitude],
       :longitude => params[:longitude])
@@ -13,10 +14,9 @@ class NodesController < ApplicationController
 
     # @nodes = user_node.nearbys(5)
     @nodes = Node.where(:in_queue => false).order("distance")
+    render :json => @nodes.to_json
 
     user_node.delete()
-
-    render :json => @nodes.to_json
   end
 
   def create

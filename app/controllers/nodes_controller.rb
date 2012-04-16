@@ -3,7 +3,7 @@ class NodesController < ApplicationController
 
   def index
     if params[:latitude].nil? and params[:longitude].nil? or params[:latitude].empty? or params[:longitude].empty?
-      render :json => {"success" => false, "message" => "Invalid location"} and return
+      render :json => {"success" => false, "message" => "Invalid location", "location" => params.to_json} and return
     end
 
     # TODO: Avoid the database access
@@ -13,7 +13,7 @@ class NodesController < ApplicationController
     user_node.save()
 
     # @nodes = user_node.nearbys(5)
-    @nodes = Node.where(:in_queue => false).order("distance")
+    @nodes = Node.where(:in_queue => false)
     render :json => @nodes.to_json
 
     user_node.delete()

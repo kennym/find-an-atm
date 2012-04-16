@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  attr_accessible :address, :latitude, :longitude, :name
+  attr_accessible :address, :latitude, :longitude, :name, :in_queue
   reverse_geocoded_by :latitude, :longitude, :address => :location
 
   validates :name, :latitude, :longitude, :presence => true

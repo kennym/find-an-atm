@@ -2,14 +2,8 @@ class NodesController < ApplicationController
   respond_to :json
 
   def index
-    # Debugging only
-    if params[:latitude].nil? and
-       params[:longitude].nil?
-      params[:latitude] = "-25.300494"
-      params[:longitude] = "-57.636231"
-    elsif params[:latitude].empty? or params[:longitude].empty?
-      params[:latitude] = "-25.300494"
-      params[:longitude] = "-57.636231"
+    if params[:latitude].nil? and params[:longitude].nil? or params[:latitude].empty? or params[:longitude].empty?
+      render :json => {"success" => false, "message" => "Invalid location"} and return
     end
 
     user_node = Node.new(
@@ -18,7 +12,7 @@ class NodesController < ApplicationController
     user_node.save()
 
     # @nodes = user_node.nearbys(5)
-    @nodes = Node.all().sort_by()
+    @nodes = Node.where(:in_queue => false).order("distance")
 
     user_node.delete()
 
@@ -29,13 +23,13 @@ class NodesController < ApplicationController
     user_node = Node.new(
       :name => params[:name],
       :latitude => params[:latitude],
-      :longitude => params[:longitude]
-    )
+      :longitude => params[:longitude],
+      :in_queue => true)
 
     if user_node.save
-      render :json => {"success" => true}
+      render :json => {"success" => true, "errors" => user_node.errors}
     else
-      render :json => {"success" => false}
+      render :json => {"success" => false, "errors" => user_node.errors}
     end
   end
 end

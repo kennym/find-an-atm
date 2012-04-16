@@ -17,11 +17,12 @@ class NodesController < ApplicationController
       :longitude => params[:longitude])
     user_node.save()
 
-    @nodes = user_node.nearbys(5)
+    # @nodes = user_node.nearbys(5)
+    @nodes = Node.all().sort_by()
 
     user_node.delete()
 
-    render :text => "#{params[:callback]}(" + @nodes.to_json + ")", :content_type => 'text/javascript'
+    render :json => @nodes.to_json
   end
 
   def create
@@ -32,9 +33,9 @@ class NodesController < ApplicationController
     )
 
     if user_node.save
-      render :json => {"ok" => true}
+      render :json => {"success" => true}
     else
-      render :json => {"ok" => false, "error" => user_node.errors}
+      render :json => {"success" => false}
     end
   end
 end

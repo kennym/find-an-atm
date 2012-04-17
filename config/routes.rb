@@ -1,6 +1,8 @@
 FindMyMoney::Application.routes.draw do
 
   resources :nodes
+
+  match "/application.manifest" => Rails::Offline
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

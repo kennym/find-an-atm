@@ -6,7 +6,6 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'sqlite3'
 
 gem 'geocoder'
 
@@ -20,6 +19,10 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'sqlite3'
 end
 
 gem 'jquery-rails'

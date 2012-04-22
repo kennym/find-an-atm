@@ -32,5 +32,24 @@ class NodesController < ApplicationController
       render :json => {"success" => false, "errors" => user_node.errors}
     end
   end
+
+  def destroy
+    @node = Node.find(params[:id]).delete
+    respond_to do |format|
+      format.js { render :layout=>false }
+    end
+  end
+
+  def approve
+    @node = Node.find(params[:node_id])
+    if @node[:in_queue]
+      node[:in_queue] = false
+      @node.save
+    end
+
+    respond_to do |format|
+      format.js { render :layout=>false}
+    end
+  end
 end
 

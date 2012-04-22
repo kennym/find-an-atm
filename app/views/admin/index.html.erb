@@ -1,0 +1,19 @@
+<% if !@items.blank? %>
+  <ul>
+  <% for item in @items %>
+    <li id="node-<%= item.id %>">
+      <h2><%= item.name %></h2>
+      <p>Location: <%= item.location %></p>
+       <ul>
+         <li>Latitude: <%= item.latitude %></li>
+         <li>Longitude: <%= item.longitude %></li>
+       </ul>
+      <p>Created <%= distance_of_time_in_words_to_now(item.created_at, true) %> ago</p>
+      <%= link_to 'Approve', node_approve_path(item), :method => :post, :remote => true %>
+      <%= link_to 'Delete', node_path(item), :method => :delete, :remote => true %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <h2>There are no nodes waiting for approval.</h2>
+<% end %>
